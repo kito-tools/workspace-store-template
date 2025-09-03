@@ -8,7 +8,7 @@ This directory contains project-specific documentation organized by project slug
 projects/
  README.md                    # This file  
  {project-slug}/              # Individual project directories
-     .kito-meta.json         # Project metadata and UUID mapping
+     metadata.toml           # Project metadata and UUID mapping
      instructions/           # Project rules and workflows
         project-rules.md   # Project-specific AI assistant rules
         deployment.md      # Deployment workflows and procedures
@@ -21,20 +21,27 @@ projects/
 
 ## Project Organization
 
-### Metadata File (`.kito-meta.json`)
+### Metadata File (`metadata.toml`)
 Each project directory contains a metadata file for system integration:
-```json
-{
-  "kito_entity_id": "550e8400-e29b-41d4-a716-446655440000",
-  "entity_type": "workspace_project", 
-  "slug": "current-project-slug",
-  "created_at": "2025-01-15T10:30:00Z",
-  "last_sync_at": "2025-01-15T10:35:00Z",
-  "sync_version": 1
-}
+```toml
+# Project metadata - automatically managed by Kito
+[entity]
+id = "550e8400-e29b-41d4-a716-446655440000"
+type = "workspace_project"
+slug = "current-project-slug"
+created_at = "2025-01-15T10:30:00Z"
+last_sync_at = "2025-01-15T10:35:00Z"
+sync_version = 1
+
+# Optional project-specific configuration
+[project]
+name = "Project Display Name"
+description = "Brief project description"
+repository = "https://github.com/user/repo"
+status = "active"  # active, paused, completed, archived
 ```
 
-**Important**: This file is automatically managed by Kito. Manual edits may cause sync issues.
+**Important**: The `[entity]` section is automatically managed by Kito. Manual edits may cause sync issues. The `[project]` section can be safely edited to add additional context.
 
 ### Instructions Directory
 Contains project-specific guidance and workflows for development:

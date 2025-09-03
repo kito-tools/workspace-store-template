@@ -1,4 +1,4 @@
-# Offline Directory >ê EXPERIMENTAL
+# Offline Directory >ï¿½ EXPERIMENTAL
 
 This directory contains cached documentation for tools marked for offline access. When working in environments with limited or no internet connectivity, this directory provides essential documentation and context for your tools.
 
@@ -10,17 +10,17 @@ The offline feature allows you to mark specific tools in your workspace for offl
 - Maintain essential reference materials locally
 - Sync updates when connectivity is restored
 
-**Status**: >ê **EXPERIMENTAL** - This feature is in active development and may change significantly.
+**Status**: **EXPERIMENTAL** - This feature is in active development and may change significantly.
 
 ## Directory Structure
 
 ```
 offline/
  README.md                    # This file
- .offline-manifest.json      # Offline sync metadata (auto-generated)
+ metadata.toml               # Offline sync metadata (auto-generated)
  tools/                      # Tool-specific offline documentation
      {tool-slug}/
-         .offline-meta.json  # Tool offline metadata
+         metadata.toml       # Tool offline metadata
          docs/              # Cached official documentation
             api-reference.md
             getting-started.md
@@ -60,22 +60,24 @@ When a tool is marked for offline access, Kito will:
    - Optimize for text-based search and AI assistant consumption  
    - Compress and deduplicate content for storage efficiency
 
-### Offline Metadata (`.offline-meta.json`)
+### Offline Metadata (`metadata.toml`)
 Each offline tool contains metadata for sync management:
-```json
-{
-  "tool_slug": "example-tool",
-  "kito_tool_id": "550e8400-e29b-41d4-a716-446655440000",
-  "offline_enabled_at": "2025-01-15T10:30:00Z",
-  "last_sync_at": "2025-01-15T12:45:00Z",
-  "content_version": "2.1.0",
-  "source_urls": [
+```toml
+# Offline tool metadata
+[offline]
+tool_slug = "example-tool"
+kito_tool_id = "550e8400-e29b-41d4-a716-446655440000"
+offline_enabled_at = "2025-01-15T10:30:00Z"
+last_sync_at = "2025-01-15T12:45:00Z"
+content_version = "2.1.0"
+cache_size_mb = 15.2
+expiry_date = "2025-02-15T10:30:00Z"
+
+# Source URLs for documentation
+source_urls = [
     "https://example-tool.com/docs",
     "https://api.example-tool.com/reference"
-  ],
-  "cache_size_mb": 15.2,
-  "expiry_date": "2025-02-15T10:30:00Z"
-}
+]
 ```
 
 ## Usage Scenarios

@@ -8,7 +8,7 @@ This directory contains tool-specific documentation organized by tool slug. Each
 tools/
  README.md                    # This file
  {tool-slug}/                 # Individual tool directories
-     .kito-meta.json         # Tool metadata and UUID mapping
+     metadata.toml           # Tool metadata and UUID mapping
      instructions/           # AI assistant rules and workflows
         rules.md           # AI assistant rules and preferences
         workflows.md       # Automation and workflow instructions
@@ -21,20 +21,27 @@ tools/
 
 ## Tool Organization
 
-### Metadata File (`.kito-meta.json`)
+### Metadata File (`metadata.toml`)
 Each tool directory contains a metadata file for system integration:
-```json
-{
-  "kito_entity_id": "550e8400-e29b-41d4-a716-446655440000",
-  "entity_type": "workspace_tool",
-  "slug": "current-tool-slug",
-  "created_at": "2025-01-15T10:30:00Z",
-  "last_sync_at": "2025-01-15T10:35:00Z",
-  "sync_version": 1
-}
+```toml
+# Tool metadata - automatically managed by Kito
+[entity]
+id = "550e8400-e29b-41d4-a716-446655440000"
+type = "workspace_tool"
+slug = "current-tool-slug"
+created_at = "2025-01-15T10:30:00Z"
+last_sync_at = "2025-01-15T10:35:00Z"
+sync_version = 1
+
+# Optional tool-specific configuration
+[tool]
+name = "Tool Display Name"
+description = "Brief description of the tool"
+homepage = "https://example.com"
+documentation = "https://docs.example.com"
 ```
 
-**Important**: This file is automatically managed by Kito. Manual edits may cause sync issues.
+**Important**: The `[entity]` section is automatically managed by Kito. Manual edits may cause sync issues. The `[tool]` section can be safely edited to add additional context.
 
 ### Instructions Directory
 Contains guidance and automation rules for AI assistants:
