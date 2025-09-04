@@ -6,52 +6,37 @@ This repository serves as the collaborative storage backend for your Kito worksp
 
 ```
 README.md                   # This file
-metadata.toml               # Workspace metadata
 tools/                      # Tool-specific storage
    {tool-slug}/
-       metadata.toml        # Tool metadata
-       instructions/        # Tool rules and workflows
-       notes/               # Tool documentation and context
+       instructions/        # Tool rules and workflows (initially empty)
+       notes/               # Tool documentation and context (initially empty)
 
 projects/                   # Project-specific storage
    {project-slug}/
-       metadata.toml        # Project metadata
-       instructions/        # Project rules and workflows
-       notes/               # Project specifications and architecture etc.
-
-offline/                    # EXPERIMENTAL: Offline documentation
-    README.md               # Offline access documentation
+       instructions/        # Project rules and workflows (initially empty)
+       notes/               # Project specifications and architecture (initially empty)
 ```
+
+**Key Points:**
+- Directory names match the slugs of your Kito workspace entities
+- Each tool/project has dedicated `instructions/` and `notes/` directories  
+- Directories are created automatically when you add entities to your workspace
 
 ## How It Works
 
-This repository is connected to your Kito workspace through the GitHub Apps integration. It enables **bidirectional sync** between multiple editing interfaces:
+This repository is connected to your Kito workspace through the GitHub Apps integration. The current implementation focuses on maintaining proper directory structure for your workspace entities.
 
-### Editing Options
+### Future Editing Options (Planned)
 - **Kito Web UI**: Rich editing interface with workspace-specific features
-- **Kito CLI**: Programmatic access to workspace files and sync operations via CLI
-- **Normal Git Operations**: Clone locally, use any offline/online editor, commit and push changes
+- **Kito CLI**: Programmatic access to workspace files and sync operations
+- **Git Operations**: Clone locally, use any editor, commit and push changes
 
-### Sync Strategy (TODO: Be more explicit about what's going on)
-- **Git-native workflow**: Full support for branches, merges, and standard git operations. While kito operates on only the `main` branch. You're free to maintain branches but that'd be unusual.
-- **Pull-based sync**: Changes are detected when you interact with your workspace
-- **Multi-source support**: Handle edits from any interface seamlessly. We try to do best-effort sync.
+### Current Implementation
+- **Structure Management**: Kito ensures the proper directory structure exists for your workspace entities
+- **Slug-based Mapping**: Directory names directly correspond to entity slugs in your Kito workspace
+- **Auto-creation**: Missing directories are automatically created with the required `instructions/` and `notes/` subdirectories
 
-## Metadata System
-
-### Workspace Metadata (`metadata.toml`)
-Auto-generated file containing workspace-level configuration:
-- Workspace UUID and repository information
-- Sync settings and validation rules
-- Last sync timestamps
-- Human-readable TOML format with comments
-
-### Entity Metadata (`metadata.toml`)
-Each tool and project directory contains metadata for UUID mapping:
-- Links directory names to Kito database entities
-- Tracks sync timestamps and version information
-- Enables consistent mapping between slug names and UUIDs
-- TOML format allows for comments and extended configuration
+**Note**: Advanced sync features like content synchronization and conflict resolution are planned for future development.
 
 ## Getting Started
 
