@@ -19,8 +19,15 @@ projects/                   # Project-specific storage
 
 **Key Points:**
 - Directory names match the slugs of your Kito workspace entities
-- Each tool/project has dedicated `instructions/` and `notes/` directories  
-- Directories are created automatically when you add entities to your workspace
+- Each tool/project has dedicated `instructions/` and `notes/` directories (required by Kito)
+- Required directories are created automatically when you add entities to your workspace
+- You can put any content you want inside `instructions/` and `notes/` directories
+- Other files in the repository are allowed but ignored by Kito
+
+**Content Guidelines:**
+- **Instructions**: Guidance and automation that AI assistants should follow - rules, workflows, best practices
+- **Notes**: Documentation, context, and knowledge - specifications, research, background information
+- **Organization Freedom**: Organize your content hierarchically, flat, or any way that works for you
 
 ## How It Works
 
@@ -32,9 +39,11 @@ This repository is connected to your Kito workspace through the GitHub Apps inte
 - **Git Operations**: Clone locally, use any editor, commit and push changes
 
 ### Current Implementation
-- **Structure Management**: Kito ensures the proper directory structure exists for your workspace entities
+- **Partially Strict Structure**: Kito enforces required directories (`tools/`, `projects/`, `instructions/`, `notes/`) but you have complete freedom in content and organization
 - **Slug-based Mapping**: Directory names directly correspond to entity slugs in your Kito workspace
-- **Auto-creation**: Missing directories are automatically created with the required `instructions/` and `notes/` subdirectories
+- **Auto-creation**: Missing required directories are automatically created
+- **Content Freedom**: Put anything you want inside `instructions/` and `notes/` directories - organize hierarchically, flat, or any way you prefer
+- **Health Monitoring**: Use the health check in your workspace settings to detect and fix any structural discrepancies
 
 **Note**: Advanced sync features like content synchronization and conflict resolution are planned for future development.
 
